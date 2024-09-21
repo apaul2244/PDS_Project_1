@@ -1,0 +1,11 @@
+<h1>Contact Us</h1>
+<form method="POST" action="/submit_contact">
+  <label>Name:</label><br>
+  <input type="text" name="name"><br>
+  <label>Email:</label><br>
+  <input type="email" name="email"><br>
+  <label>Message:</label><br>
+  <textarea name="message"></textarea><br>
+  <button type="submit">Send</button>
+</form>
+<a href="{{ url_for('home', session_id=request.args.get('session_id')) }}">Back to Home</a>

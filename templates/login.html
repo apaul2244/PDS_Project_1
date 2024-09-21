@@ -1,0 +1,12 @@
+<h2>Login</h2>
+<form method="POST" action="/login">
+  <label>Email:</label><br>
+  <input type="email" name="email"><br>
+  <label>Password:</label><br>
+  <input type="password" name="password"><br>
+  <button type="submit">Login</button>
+</form>
+
+<h2>Or login with:</h2>
+<a href="{{ url_for('facebook.login') }}">Login with Facebook</a>
+<a href="{{ url_for('google.login') }}">Login with Google</a>

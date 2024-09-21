@@ -1,0 +1,15 @@
+<h2>Profile</h2>
+<p>Name: {{ user[1] }}</p>
+<p>Email: {{ user[2] }}</p>
+<p>Phone: {{ user[3] }}</p>
+
+<h3>Gallery</h3>
+<div class="gallery">
+    {% for image in images %}
+    <div class="image">
+        <img src="{{ url_for('static', filename=folder_path + '/' + image) }}" alt="Image" width="200px">
+    </div>
+    {% endfor %}
+</div>
+<a href="{{ url_for('dashboard', session_id=request.args.get('session_id')) }}">Back to Dashboard</a>
+<a href="{{ url_for('logout', session_id=request.args.get('session_id')) }}">Logout</a>

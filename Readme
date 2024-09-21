@@ -1,0 +1,23 @@
+/flask_app
+│
+├── app.py                    # Main Flask application
+├── config.py                 # Config file for the app (MySQL settings)
+├── requirements.txt          # Requirements file for dependencies
+├── /templates
+    ├── login.html             # Login page
+    ├── register.html          # Registration page
+    ├── home.html              # Home/Dashboard
+    ├── about.html             # About page
+    ├── services.html          # Services page
+    ├── contact.html           # Contact page
+    ├── profile.html           # User profile and gallery
+    |-- dashboard.html
+
+└── /db
+    └── schema.sql            # SQL script to create tables
+
+
+
+
+
+# master branch

@@ -1,0 +1,6 @@
+<h1>Welcome to Home Page</h1>
+<a href="{{ url_for('about', session_id=request.args.get('session_id')) }}">About Us</a>
+<a href="{{ url_for('services', session_id=request.args.get('session_id')) }}">Services</a>
+<a href="{{ url_for('contact', session_id=request.args.get('session_id')) }}">Contact Us</a>
+<a href="{{ url_for('profile', session_id=request.args.get('session_id')) }}">Profile</a>
+<a href="{{ url_for('logout', session_id=request.args.get('session_id')) }}">Logout</a>
