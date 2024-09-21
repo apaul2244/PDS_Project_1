@@ -6,12 +6,12 @@
 ├── /templates
     ├── login.html             # Login page
     ├── register.html          # Registration page
-    ├── home.html              # Home/Dashboard
+    ├── home.html              # Home
     ├── about.html             # About page
     ├── services.html          # Services page
     ├── contact.html           # Contact page
     ├── profile.html           # User profile and gallery
-    |-- dashboard.html
+    |-- dashboard.html         # Displays after login and provides navigation to app features.
 
 └── /db
     └── schema.sql            # SQL script to create tables
