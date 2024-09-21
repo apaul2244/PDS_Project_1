@@ -2,3 +2,9 @@
 <p>You are logged in.</p>
 <a href="{{ url_for('profile', session_id=session_id) }}">Profile</a>
 <a href="{{ url_for('logout', session_id=session_id) }}">Logout</a>
+
+
+<a href="{{ url_for('about', session_id=session_id) }}">about</a>
+<a href="{{ url_for('contact', session_id=session_id) }}">contact</a>
+<a href="{{ url_for('home', session_id=session_id) }}">home</a>
+<a href="{{ url_for('services', session_id=session_id) }}">services</a>

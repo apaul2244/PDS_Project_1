@@ -2,13 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from uuid import uuid4
-from datetime import datetime, timedelta
+from datetime import datetime
 import os
 
 app = Flask(__name__)
 
 # Set a secret key for session management
-app.secret_key = os.urandom(24)
+app.secret_key = 'your_secret_key_here'  # Replace with a random string
 
 # Configure MySQL
 app.config['MYSQL_HOST'] = 'localhost'
@@ -29,14 +29,6 @@ def create_session(user_id):
     mysql.connection.commit()
     return session_id
 
-# Function to create a new session
-#def create_session(user_id):
-#    session_id = str(uuid4())  # Generate a unique session ID
-#    cur = mysql.connection.cursor()
-#    cur.execute("INSERT INTO sessions (session_id, user_id) VALUES (%s, %s)", (session_id, user_id))
-#    mysql.connection.commit()
-#    return session_id
-
 # Function to create an SFTP folder for a user
 def create_user_sftp_folder(email, phone):
     folder_name = email + phone  # Folder name as email + phone
@@ -49,6 +41,13 @@ def save_user_folder(user_id, folder_path):
     cur = mysql.connection.cursor()
     cur.execute("INSERT INTO user_folders (user_id, folder_path) VALUES (%s, %s)", (user_id, folder_path))
     mysql.connection.commit()
+
+# Function to check session activity
+def is_session_active(session_id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT active FROM sessions WHERE session_id=%s", (session_id,))
+    result = cur.fetchone()
+    return result and result[0]  # Check if result is not None and return the active status
 
 # Route for login
 @app.route('/')
@@ -85,15 +84,12 @@ def register():
                     (name, email, phone, password))
         mysql.connection.commit()
         
-        # Get the newly created user ID
         cur.execute("SELECT id FROM users WHERE email=%s", (email,))
-        user_id = cur.fetchone()[0]
-        
-        # Create SFTP folder for the user
-        folder_path = create_user_sftp_folder(email, phone)
-        
-        # Save the folder path in the database
-        save_user_folder(user_id, folder_path)
+        user_id = cur.fetchone()
+        if user_id:
+            user_id = user_id[0]
+            folder_path = create_user_sftp_folder(email, phone)
+            save_user_folder(user_id, folder_path)
         
         return redirect(url_for('index'))
     return render_template('register.html')
@@ -112,29 +108,35 @@ def get_images_from_folder(folder_path):
 def profile():
     session_id = request.args.get('session_id')
     
-    if not session_id:
-        flash('Invalid session')
+    if not session_id or not is_session_active(session_id):
+        flash('Session has expired or is invalid')
         return redirect(url_for('index'))
     
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM sessions WHERE session_id=%s AND active=TRUE", (session_id,))
+    cur.execute("SELECT * FROM sessions WHERE session_id=%s", (session_id,))
     session_data = cur.fetchone()
     
     if not session_data:
         flash('Session has expired or is invalid')
         return redirect(url_for('index'))
-    
+
     user_id = session_data[2]
     
-    # Fetch user details
     cur.execute("SELECT * FROM users WHERE id=%s", (user_id,))
     user = cur.fetchone()
     
-    # Fetch user's folder path
+    if not user:
+        flash('User not found')
+        return redirect(url_for('index'))
+
     cur.execute("SELECT folder_path FROM user_folders WHERE user_id=%s", (user_id,))
-    folder_path = cur.fetchone()[0]
+    folder_path = cur.fetchone()
     
-    # Get images from user's folder
+    if not folder_path:
+        flash('Folder path not found')
+        return redirect(url_for('index'))
+
+    folder_path = folder_path[0]
     images = get_images_from_folder(folder_path)
     
     return render_template('profile.html', user=user, images=images, folder_path=folder_path)
@@ -144,11 +146,52 @@ def profile():
 def dashboard():
     session_id = request.args.get('session_id')
     
-    if not session_id:
-        flash('Invalid session')
+    if not session_id or not is_session_active(session_id):
+        flash('Session has expired or is invalid')
         return redirect(url_for('index'))
     
     return render_template('dashboard.html', session_id=session_id)
+
+# Other pages
+@app.route('/about')
+def about():
+    session_id = request.args.get('session_id')
+    
+    if not session_id or not is_session_active(session_id):
+        flash('Session has expired or is invalid')
+        return redirect(url_for('index'))
+    
+    return render_template('about.html', session_id=session_id)
+
+@app.route('/contact')
+def contact():
+    session_id = request.args.get('session_id')
+    
+    if not session_id or not is_session_active(session_id):
+        flash('Session has expired or is invalid')
+        return redirect(url_for('index'))
+    
+    return render_template('contact.html', session_id=session_id)
+
+@app.route('/home')
+def home():
+    session_id = request.args.get('session_id')
+    
+    if not session_id or not is_session_active(session_id):
+        flash('Session has expired or is invalid')
+        return redirect(url_for('index'))
+    
+    return render_template('home.html', session_id=session_id)
+
+@app.route('/services')
+def services():
+    session_id = request.args.get('session_id')
+    
+    if not session_id or not is_session_active(session_id):
+        flash('Session has expired or is invalid')
+        return redirect(url_for('index'))
+    
+    return render_template('services.html', session_id=session_id)
 
 # Route for logout
 @app.route('/logout')
