@@ -1,3 +1,4 @@
+<!--
 <h2>Login</h2>
 <form method="POST" action="/login">
   <label>Email:</label><br>
@@ -8,3 +9,59 @@
 </form>
 
 <h2>Or login with:</h2>
+-->
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-box">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Brand Logo" class="logo-image">
+      </div>
+      <!-- <h1>Welcome</h1> -->
+
+
+
+
+      <h2>Login</h2>
+      <form method="POST" action="/login" class="login-form">
+        <label>Email:</label><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <label>Password:</label><br>
+        <div class="password-container">
+        <input type="password" name="password" placeholder="Password" required><br>
+        <span class="toggle-password">👁</span>
+        </div>
+        <button type="submit" class="login-button">Login</button>
+      </form>
+
+
+
+
+
+
+
+      <p class="signup-text">Don’t have an account? <a href="{{ url_for('register', session_id=session_id) }}">Sign up</a></p>
+    </div>
+  </div>
+
+  
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

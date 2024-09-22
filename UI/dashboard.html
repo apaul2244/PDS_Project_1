@@ -1,30 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designer Hub</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <div class="dashboard-container">
     <header>
-      <div class="logo">
-        <img src="logo.png" alt="Brand Logo" class="logo-image">
-      </div>
-      <h1>Dashboard</h1>
+        <div class="logo">
+            <img src="logo.png" alt="Company Logo" class="logo-img" />
+        </div>
+        <!-- <div class="profile-icon" >👤</div> -->
+        <button onclick="toggleMenu()" class="profile-icon">👤</button>
+        <nav id="navbar" class="hidden">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="dashboard-nav">
-      <ul>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="services.html">Custom T-Shirts</a></li>
-        <li><a href="contact.html">Contact Support</a></li>
-      </ul>
-    </section>
-  </div>
 
-  <script src="scripts.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    <main>
+        <div id="hero">
+            <img src="hero-image.jpg" alt="Hero Image" class="hero-img" />
+            <h1>Your Catchy Title</h1>
+            <a href="#" class="btn">Shop Now</a>
+        </div>
+        
+
+        <section id="products">
+            <h2>Products</h2>
+            <div class="product-grid">
+                <div class="product-card" onclick="location.href='#product1';">
+                    <img src="product1.jpg" alt="Product 1">
+                    <h3>Product 1</h3>
+                    <p>$49.99</p>
+                </div>
+                <div class="product-card" onclick="location.href='#product2';">
+                    <img src="product2.jpg" alt="Product 2">
+                    <h3>Product 2</h3>
+                    <p>$59.99</p>
+                </div>
+                <div class="product-card" onclick="location.href='#product3';">
+                    <img src="product3.jpg" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>$39.99</p>
+                </div>
+                <div class="product-card" onclick="location.href='#product4';">
+                    <img src="product4.jpg" alt="Product 4">
+                    <h3>Product 4</h3>
+                    <p>$69.99</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="categories">
+            <h2>Categories</h2>
+            <p>Shop by categories to find exactly what you need.</p>
+            <div class="category-list">
+                <div class="category-item">Fashion</div>
+                <div class="category-item">Accessories</div>
+                <div class="category-item">Home Decor</div>
+                <div class="category-item">Art</div>
+            </div>
+        </section>
+
+        <section id="our-promise">
+            <h2>Our Promise</h2>
+            <p>We guarantee quality and customer satisfaction with every purchase.</p>
+            <div class="promise-steps">
+                <div class="promise-step">
+                    <img src="design.jpg" alt="Design">
+                    <h3>Design</h3>
+                    <p>We work closely with you to create unique designs that reflect your style.</p>
+                </div>
+                <div class="promise-step">
+                    <img src="order.jpg" alt="Order">
+                    <h3>Order</h3>
+                    <p>Easy and secure ordering process for a seamless shopping experience.</p>
+                </div>
+                <div class="promise-step">
+                    <img src="delivered.png" alt="Delivered">
+                    <h3>Delivered</h3>
+                    <p>Your items are delivered promptly to your doorstep, ready to enjoy.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>What payment methods do you accept?</h3>
+                </div>
+                <div class="faq-answer hidden">
+                    <p>We accept all major credit cards, PayPal, and bank transfers.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>How long does shipping take?</h3>
+                </div>
+                <div class="faq-answer hidden">
+                    <p>Shipping typically takes 5-7 business days, depending on your location.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Can I return an item?</h3>
+                </div>
+                <div class="faq-answer hidden">
+                    <p>Yes, you can return items within 30 days of receiving your order.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Do you offer gift cards?</h3>
+                </div>
+                <div class="faq-answer hidden">
+                    <p>Yes, we offer gift cards in various denominations.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>How can I track my order?</h3>
+                </div>
+                <div class="faq-answer hidden">
+                    <p>You will receive a tracking number via email once your order has shipped.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>What should I do if I have a problem with my order?</h3>
+                </div>
+                <div class="faq-answer hidden">
+                    <p>Please contact our customer service team for assistance with any issues.</p>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="offerings">
+            <h2>Our Offerings</h2>
+            <p>Explore our exclusive offerings and limited-time deals.</p>
+            <div class="offerings-grid">
+                <div class="offering-item">
+                    <img src="offering1.jpg" alt="Offering 1">
+                    <h3>Exclusive Designs</h3>
+                    <p>Discover our unique designs available only for a limited time.</p>
+                </div>
+                <div class="offering-item">
+                    <img src="offering2.jpg" alt="Offering 2">
+                    <h3>Seasonal Sales</h3>
+                    <p>Take advantage of our seasonal sales and get the best deals.</p>
+                </div>
+                <div class="offering-item">
+                    <img src="offering3.jpg" alt="Offering 3">
+                    <h3>Custom Orders</h3>
+                    <p>Place custom orders tailored to your specific needs and preferences.</p>
+                </div>
+                <div class="offering-item">
+                    <img src="offering4.jpg" alt="Offering 4">
+                    <h3>Gift Packages</h3>
+                    <p>Choose from a variety of gift packages for every occasion.</p>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="testimonials">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"Amazing quality! I love my new design."</p>
+                    <div class="star-rating">
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                    </div>
+                    <p>- Jane Doe</p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"A fantastic shopping experience! Will be back."</p>
+                    <div class="star-rating">
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                    </div>
+                    <p>- John Smith</p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-content">
+                    <p>"Unique pieces that you won't find anywhere else."</p>
+                    <div class="star-rating">
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star filled">&#9733;</span>
+                        <span class="star">&#9734;</span>
+                        <span class="star">&#9734;</span>
+                    </div>
+                    <p>- Sarah Lee</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Designer Hub. All rights reserved.</p>
+        <p><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+    </footer>
+
+    <script>
+function toggleMenu() {
+    const navbar = document.getElementById('navbar');
+    navbar.classList.toggle('hidden'); // This line correctly toggles the hidden class
+}
+
+</script>
+
+<script>
+        
+    function toggleFAQ(questionElement) {
+        const answerElement = questionElement.nextElementSibling;
+        if (answerElement.classList.contains('hidden')) {
+            answerElement.classList.remove('hidden');
+        } else {
+            answerElement.classList.add('hidden');
+        }
+    }
+    
+        </script>
+
 </body>
 </html>

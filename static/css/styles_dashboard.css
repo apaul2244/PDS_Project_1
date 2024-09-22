@@ -58,12 +58,13 @@ nav.hidden {
 }
 
 #hero {
-    background: url('hero-image.jpeg') no-repeat center center/cover;
+    background: url('../images/hero-image.jpeg') no-repeat center center/cover;
     height: 50vh; /* Adjust height as needed, e.g., 50% of viewport height */
     color: #fff;
     text-align: center;
     padding: 100px 20px; /* Existing padding */
 }
+
 
 .hero-img {
     width: 100%; /* Full width */
